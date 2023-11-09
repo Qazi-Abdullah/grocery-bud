@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="section-centre">
+        <form class="grocery-form">
+            <p class="alert"></p>
+            <h3>grocery bud</h3>
+            <div class="form-control">
+                <input type="text" name="" id="grocery" placeholder="e.g. eggs"
+                >
+                <button type="submit" class="submit-btn">submit</button>
+            </div>
+        </form>
+    <div class="grocery-container">
+        <div class="grocery-list">
+            <article class="grocery-item">
+                <p class="title">item</p>
+                <div class="btn-container" >
+                    <button type="button" class="edit-btn">
+                         <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="delete-btn">
+                        <i class="fas fa-trash"></i>
+                   </button>
+                </div>
+            </article>
+        </div>
+        <button type="button" class="clear-btn">clear items</button>
+    </div>
+    </section>
+   <script type="module" >
+    const alert = document.querySelector('.alert')
+    const form = document.querySelector('.grocery-form')
+    const grocery = document.getElementById('grocery')
+    const submitBtn = document.querySelector('.submit-btn')
+    const container = document.querySelector('.grocery-container')
+    const list = document.querySelector('.grocery-list')
+    const clearBtn = document.querySelector('.clear-btn')
+
+    let editElement;
+    let editFlag = false;
+    let editID = "";
+
+    form.addEventListener("submit", addItem);
+
+    function addItem(e){
+        e.preventDefault();
+        console.log(grocery.value);
+        const value = grocery.value;
+        if (!value) {
+            console.log("value is falsy");
+    //  6:12:39
+        }
+        const id = new Date().getTime().toString()
+       console.log(id)
+       if( value !== "" && editFlag === false){
+        console.log("add item to the list");
+       }
+       else if ( value !== "" && editFlag === true){
+        console.log("editing");
+       } else {
+        console.log("empty value");
+       }
+    }
+   </script>
+</body>
+</html>
