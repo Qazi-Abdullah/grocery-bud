@@ -18,17 +18,7 @@
         </form>
     <div class="grocery-container">
         <div class="grocery-list">
-            <article class="grocery-item">
-                <p class="title">item</p>
-                <div class="btn-container" >
-                    <button type="button" class="edit-btn">
-                         <i class="fas fa-edit"></i>
-                    </button>
-                    <button type="button" class="delete-btn">
-                        <i class="fas fa-trash"></i>
-                   </button>
-                </div>
-            </article>
+            
         </div>
         <button type="button" class="clear-btn">clear items</button>
     </div>
@@ -52,20 +42,52 @@
         e.preventDefault();
         console.log(grocery.value);
         const value = grocery.value;
-        if (!value) {
-            console.log("value is falsy");
-    //  6:12:39
-        }
+        
         const id = new Date().getTime().toString()
        console.log(id)
-       if( value !== "" && editFlag === false){
-        console.log("add item to the list");
-       }
-       else if ( value !== "" && editFlag === true){
+       if( value  && !editFlag === false){
+        const element = document.createElement('article');
+        element.classList.add('grocery-item')
+    const attr = document.createAttribute('data-id')
+    attr.value = id 
+    element.setAttributeNode(attr);
+    element.innerHTML = `  <p class="title">${value}</p>
+                <div class="btn-container" >
+                    <button type="button" class="edit-btn">
+                         <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="delete-btn">
+                        <i class="fas fa-trash"></i>
+                   </button>
+                </div>`;
+                list.appendChild(element);
+                displayAlert('item added to the list', 'success');
+                container.classList.add("show-container");
+
+          addtoLocaltorage(id , value);
+          setBackToDefault()      
+    }
+       else if ( value  && editFlag === true){
         console.log("editing");
        } else {
-        console.log("empty value");
-       }
+       displayAlert("please enter value " , "danger")
+    }
+    }
+
+    function displayAlert(text,acion){
+        alert.textContent = text;
+        alert.classlist.add(`alert-${action}`);
+    
+        setTimeout (function () { 
+            alert.textContent = "";
+        alert.classlist.add(`alert-${action}`);
+        } , 1000)
+    }
+function setBackToDefault(){
+  console.log("set back to default");
+}
+function addtoLocaltorage(id, value){
+        console.log("added to local storage");
     }
    </script>
 </body>
